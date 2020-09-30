@@ -1,0 +1,16 @@
+.todoForm {
+    border: 1px solid black;
+    position: relative;
+    margin: auto;
+    width: fit-content;
+    font-size: 0.5rem;
+    
+}
+
+.todoHeader {
+    text-align: left;
+}
+
+.todoTextField {
+    background-color: white;
+}
