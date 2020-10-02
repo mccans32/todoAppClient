@@ -1,16 +1,26 @@
 .todoForm {
-    border: 1px solid black;
-    position: relative;
+    width: 70%;
     margin: auto;
-    width: fit-content;
-    font-size: 0.5rem;
-    
-}
-
-.todoHeader {
-    text-align: left;
+    padding: 0;
+    padding-top: 5vh;
 }
 
 .todoTextField {
+    position: absolute;
     background-color: white;
+    width: 100%;
+}
+
+.todoFormCard {
+   width: 100%;
+   margin: auto;
+}
+
+.todoFormCard p {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.todoFormActions {
+    justify-content: right;
 }
