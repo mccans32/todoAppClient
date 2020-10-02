@@ -1,4 +1,14 @@
 .App {
   text-align: center;
-  background-color: green;
+}
+
+.appContainer {
+  background: rgb(173, 236, 232);
+  background: linear-gradient(
+    183deg,
+    rgba(173, 236, 232, 1) 0%,
+    rgba(0, 215, 204, 1) 22%,
+    rgba(179, 59, 204, 1) 100%
+  );
+  min-height: 100vh;
 }
