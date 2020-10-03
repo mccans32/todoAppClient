@@ -1,4 +1,4 @@
-import { Container, Paper } from '@material-ui/core';
+import { Container } from '@material-ui/core';
 import React from 'react';
 import './App.css';
 import TodoForm from './components/TodoForm'

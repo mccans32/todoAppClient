@@ -19,14 +19,36 @@ class TodoForm extends React.Component {
         })
     }
 
+    postTodo(url, data) {
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            mode: 'cors',
+            body: JSON.stringify(data),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
     uploadTodo() {
         // convert text to JSON
-        let obj = {
-            "todoMessage": this.state.formData
-        }
+        let data = {
+            "message": this.state.formData
+        };
 
-        let json = JSON.stringify(obj);
-        console.log(json);
+        const base_api_url = process.env.REACT_APP_API_URL;
+        const api_port = process.env.REACT_APP_API_PORT;
+        const api_route = "todos";
+        const full_api_url = `${base_api_url}:${api_port}/${api_route}/`;
+
+        this.postTodo(full_api_url, data);
     }
 
     render() {
@@ -36,7 +58,6 @@ class TodoForm extends React.Component {
                 <Card className="todoFormCard">
                     <CardContent className="todoFormContent" style={{ padding: CARD_PADDING }}>
                         <Typography
-                            variant="p"
                             component="p">
                             What do you need to do?
                             </Typography>
@@ -45,7 +66,7 @@ class TodoForm extends React.Component {
                             variant="outlined"
                             multiline={true}
                             inputProps={{
-                                maxlength: 100
+                                maxLength: 100
                             }}
                             rows={5}
                             placeholder="Empty"
