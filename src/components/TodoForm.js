@@ -6,9 +6,6 @@ class TodoForm extends React.Component {
 
     constructor() {
         super();
-        this.base_api_url = process.env.REACT_APP_API_URL;
-        this.api_port = process.env.REACT_APP_API_PORT;
-        this.api_url = `${this.base_api_url}:${this.api_port}/`
         this.handleChange = this.handleChange.bind(this)
         this.uploadTodo = this.uploadTodo.bind(this)
         this.state = {
@@ -34,37 +31,11 @@ class TodoForm extends React.Component {
             .then(response => response.json())
             .then(data => {
                 console.log('Success:', data);
+                // Reload the entries
+                this.props.reloadTodos(url);
             })
             .catch((error) => {
                 console.error('Error:', error);
-            });
-    }
-
-    componentDidMount() {
-        console.log("Loaded")
-
-        // Attempt to retrieve todos form the database
-        const api_route = "todos";
-        const full_api_url = `${this.api_url}${api_route}/`;
-
-        this.getTodos(full_api_url);
-
-    }
-
-    getTodos(url) {
-        fetch(url, {
-            method: "GET"
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Successfully retrieved todos');
-                // Set the state with out new todos
-                this.setState({
-                    todos: data
-                })
-            })
-            .catch((error) => {
-                console.error('Failed to retrieve todos', error);
             });
     }
 
@@ -75,7 +46,7 @@ class TodoForm extends React.Component {
         };
 
         const api_route = "todos";
-        const full_api_url = `${this.api_url}${api_route}/`;
+        const full_api_url = `${this.props.api}${api_route}/`;
 
         this.postTodo(full_api_url, data);
     }
